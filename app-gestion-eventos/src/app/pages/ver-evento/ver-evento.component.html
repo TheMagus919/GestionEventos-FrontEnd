@@ -1,0 +1,26 @@
+<div class="container">
+  <div>
+    <h2>DETALLES DEL EVENTO ID: {{ evento.idEvento }}</h2>
+    <ul *ngIf="rol === 'organizador'">
+      <li>
+        <a routerLink="/lista-asistentes/{{ evento.idEvento }}"
+          routerLinkActive="active"
+          ariaCurrentWhenActive="page">
+          Listar Usuarios que confirmaron su Participacion
+        </a>
+      </li>
+    </ul>
+  </div>
+  <div *ngIf="evento; else cargando">
+    <p><strong>Nombre:</strong> {{ evento.nombre }}</p>
+    <p><strong>Fecha:</strong> {{ evento.fecha | fechas }}</p>
+    <p><strong>Ubicación:</strong> {{ evento.ubicacion }}</p>
+    <p><strong>Descripción:</strong> {{ evento.descripcion }}</p>
+    <button class="btn btn-secondary" routerLink="/eventos">Volver</button>
+    <button *ngIf="rol === 'asistente' AND !participa" class="btn btn-primary" (click)="asistir(evento.idEvento)">Confirmar asistencia</button>
+  </div>
+  
+  <ng-template #cargando>
+    <p>Cargando detalles del evento...</p>
+  </ng-template>
+</div>

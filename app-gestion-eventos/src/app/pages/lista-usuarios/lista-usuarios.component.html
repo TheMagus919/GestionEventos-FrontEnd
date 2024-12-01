@@ -1,0 +1,23 @@
+<div>
+  <h3>Lista de asistentes al evento {{ idEvento }}</h3>
+
+  <div *ngIf="cargando" class="spinner">Cargando usuarios...</div>
+
+  <div *ngIf="errorMensaje" class="alert alert-danger">
+    {{ errorMensaje }}
+  </div>
+
+  <ul *ngIf="!cargando && !errorMensaje">
+    <li *ngFor="let usuario of asistentes">
+      {{ usuario.nombre }} {{ usuario.apellido }}
+      <button (click)="confirmarAsistencia(usuario.idParticipacion)">
+        Confirmar asistencia
+      </button>
+    </li>
+  </ul>
+
+  <div *ngIf="!cargando && asistentes.length === 0">
+    <p>No hay usuarios anotados en este evento.</p>
+  </div>
+  <button class="btn btn-secondary" routerLink="/evento/{{ idEvento }}">Volver</button>
+</div>

@@ -1,0 +1,82 @@
+<div class="container">
+  <h2>Registro</h2>
+  <form [formGroup]="registroForm" (ngSubmit)="onSubmit()">
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <label for="nombre">Nombre</label>
+        <input type="text" id="nombre" class="form-control" formControlName="nombre" />
+        <div *ngIf="registroForm.get('nombre')?.invalid && registroForm.get('nombre')?.touched" class="text-danger">
+          <small *ngIf="registroForm.get('nombre')?.errors?.['required']">El nombre es obligatorio.</small>
+          <small *ngIf="registroForm.get('nombre')?.errors?.['minlength']">El nombre debe tener al menos 3 caracteres.</small>
+        </div>
+      </div>
+
+      <div class="form-group col-md-6">
+        <label for="apellido">Apellido</label>
+        <input type="text" id="apellido" class="form-control" formControlName="apellido" />
+        <div *ngIf="registroForm.get('apellido')?.invalid && registroForm.get('apellido')?.touched" class="text-danger">
+          <small *ngIf="registroForm.get('apellido')?.errors?.['required']">El apellido es obligatorio.</small>
+          <small *ngIf="registroForm.get('apellido')?.errors?.['minlength']">El apellido debe tener al menos 3 caracteres.</small>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <label for="email">Email</label>
+        <input type="email" id="email" class="form-control" formControlName="email" />
+        <div *ngIf="registroForm.get('email')?.invalid && registroForm.get('email')?.touched" class="text-danger">
+          <small *ngIf="registroForm.get('email')?.errors?.['required']">El email es obligatorio.</small>
+          <small *ngIf="registroForm.get('email')?.errors?.['email']">El email no es válido.</small>
+        </div>
+      </div>
+
+      <div class="form-group col-md-6">
+        <label for="password">Contraseña</label>
+        <input type="password" id="password" class="form-control" formControlName="password" />
+        <div *ngIf="registroForm.get('password')?.invalid && registroForm.get('password')?.touched" class="text-danger">
+          <small *ngIf="registroForm.get('password')?.errors?.['required']">La contraseña es obligatoria.</small>
+          <small *ngIf="registroForm.get('password')?.errors?.['minlength']">La contraseña debe tener al menos 6 caracteres.</small>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <label for="confirmarPassword">Confirmar Contraseña</label>
+        <input type="password" id="confirmarPassword" class="form-control" formControlName="confirmarPassword" />
+        <div *ngIf="registroForm.errors?.['notSame'] && registroForm.get('confirmarPassword')?.touched" class="text-danger">
+          <small>Las contraseñas no coinciden.</small>
+        </div>
+      </div>
+
+      <div class="form-group col-md-6">
+        <label for="domicilio">Domicilio</label>
+        <input type="text" id="domicilio" class="form-control" formControlName="domicilio" />
+        <div *ngIf="registroForm.get('domicilio')?.invalid && registroForm.get('domicilio')?.touched" class="text-danger">
+          <small *ngIf="registroForm.get('domicilio')?.errors?.['required']">El domicilio es obligatorio.</small>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <label for="rol">Rol</label>
+        <select id="rol" class="form-control" formControlName="rol">
+          <option value="" disabled>Seleccione un rol</option>
+          <option value="asistente">Asistente</option>
+          <option value="organizador">Organizador</option>
+        </select>
+        <div *ngIf="registroForm.get('rol')?.invalid && registroForm.get('rol')?.touched" class="text-danger">
+          <small>Debe seleccionar un rol.</small>
+        </div>
+      </div>
+    </div>
+
+    <div *ngIf="mensajeError" class="alert alert-danger">
+      {{ mensajeError }}
+    </div>
+
+    <button type="submit" class="btn btn-primary" [disabled]="registroForm.invalid">Registrar</button>
+  </form>
+</div>

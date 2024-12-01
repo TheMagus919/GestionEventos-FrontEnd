@@ -1,0 +1,40 @@
+<div class="container">
+  <h2>
+    Listado de Eventos Proximos
+  </h2>
+  <div *ngIf="rol === 'organizador'">
+    <ul>
+      <li>
+        <a routerLink="/evento/crear"
+          routerLinkActive="active"
+          ariaCurrentWhenActive="page">
+          Crear Nuevo evento
+        </a>
+      </li>
+    </ul>
+  </div>
+</div>
+<div class="table-container">
+  <table class="table table-striped table-bordered">
+    <thead>
+      <tr>
+        <th>Id</th>
+        <th>Nombre</th>
+        <th>Fecha</th>
+        <th>Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let evento of eventos">
+        <td>{{ evento.idEvento }}</td>
+        <td>{{ evento.nombre }}</td>
+        <td>{{ evento.fecha | fechas }}</td>
+        <td>
+          <button class="btn btn-info btn-sm" [routerLink]="['/evento', evento.idEvento]">Ver</button>
+          <button *ngIf="rol === 'organizador'" class="btn btn-warning btn-sm" [routerLink]="['/evento/editar', evento.idEvento]">Editar</button>
+          <button *ngIf="rol === 'organizador'" class="btn btn-danger btn-sm" (click)="EliminarEvento(evento.idEvento)">Eliminar</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

@@ -1,0 +1,32 @@
+<div *ngIf="evento; else cargando" class="container">
+    <h2>Editar Evento</h2>
+    <form [formGroup]="eventoForm" (ngSubmit)="guardarEvento()">
+      <div class="form-group">
+        <label for="nombre">Nombre</label>
+        <input id="nombre" class="form-control" formControlName="nombre" />
+      </div>
+  
+      <div class="form-group">
+        <label for="fecha">Fecha</label>
+        <input id="fecha" type="date" class="form-control" formControlName="fecha" />
+      </div>
+  
+      <div class="form-group">
+        <label for="ubicacion">Ubicación</label>
+        <input id="ubicacion" class="form-control" formControlName="ubicacion" />
+      </div>
+  
+      <div class="form-group">
+        <label for="descripcion">Descripción</label>
+        <textarea id="descripcion" class="form-control" formControlName="descripcion"></textarea>
+      </div>
+  
+      <button type="submit" class="btn btn-success" [disabled]="eventoForm.invalid">Guardar</button>
+    </form>
+  
+    <button class="btn btn-secondary" routerLink="/eventos">Volver</button>
+  </div>
+  
+  <ng-template #cargando>
+    <p>Cargando detalles del evento...</p>
+  </ng-template>

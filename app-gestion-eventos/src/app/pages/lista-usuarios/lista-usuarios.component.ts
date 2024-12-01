@@ -16,11 +16,17 @@ export class ListaUsuariosComponent implements OnInit{
   asistentes: any[] = [];
   errorMensaje: string = '';
   cargando: boolean = false;
+  currentDate: Date = new Date();
 
   constructor(
     private route: ActivatedRoute,
     private participacionService: ParticipacionService
   ) {}
+  
+  esFechaValida(fecha: string | Date): boolean {
+    const fechaEvento = new Date(fecha);
+    return fechaEvento <= this.currentDate;
+  }
 
   ngOnInit(): void {
     const idParam = this.route.snapshot.paramMap.get('id');

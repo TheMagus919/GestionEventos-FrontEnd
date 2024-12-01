@@ -3,8 +3,8 @@
       <li><a routerLink="/inicio" routerLinkActive="active" ariaCurrentWhenActive="page">Inicio</a></li>
       <li *ngIf="rol"><a routerLink="/eventos" routerLinkActive="active" ariaCurrentWhenActive="page">Eventos</a></li>
       <li *ngIf="rol === 'asistente'"><a routerLink="/certificados" routerLinkActive="active" ariaCurrentWhenActive="page">Certificados</a></li>
-      <button *ngIf="!isLoggedIn" (click)="login()">Login</button>
-      <button *ngIf="!isLoggedIn" (click)="registro()">Registro</button>
-      <button *ngIf="isLoggedIn" (click)="logout()">Logout</button>
+      <button *ngIf="rol === null" (click)="login()">Login</button>
+      <button *ngIf="rol === null" (click)="registro()">Registro</button>
+      <button *ngIf="rol" (click)="logout()">Logout</button>
   </ul>
 </nav>

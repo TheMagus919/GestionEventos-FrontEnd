@@ -10,7 +10,7 @@
   <ul *ngIf="!cargando && !errorMensaje">
     <li *ngFor="let usuario of asistentes">
       {{ usuario.nombre }} {{ usuario.apellido }}
-      <button (click)="confirmarAsistencia(usuario.idParticipacion)">
+      <button  *ngIf="esFechaValida(usuario.fecha)" (click)="confirmarAsistencia(usuario.idParticipacion)">
         Confirmar asistencia
       </button>
     </li>

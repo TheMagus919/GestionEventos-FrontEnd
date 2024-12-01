@@ -63,6 +63,7 @@ export class EventosComponent implements OnInit{
       this.eventoService.deleteEvento(idEvento).subscribe(
         (data) => {
           console.log('Evento con ID ${idEvento} eliminado.');
+          location.reload();
         },
         (error) => {
           console.error('Error al eliminar evento:', error);

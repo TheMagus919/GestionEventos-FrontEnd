@@ -17,7 +17,7 @@
     <p><strong>Ubicación:</strong> {{ evento.ubicacion }}</p>
     <p><strong>Descripción:</strong> {{ evento.descripcion }}</p>
     <button class="btn btn-secondary" routerLink="/eventos">Volver</button>
-    <button *ngIf="rol === 'asistente' AND !participa" class="btn btn-primary" (click)="asistir(evento.idEvento)">Confirmar asistencia</button>
+    <button *ngIf="rol === 'asistente' && !participa" class="btn btn-primary" (click)="asistir(evento.idEvento)">Confirmar asistencia</button>
   </div>
   
   <ng-template #cargando>
